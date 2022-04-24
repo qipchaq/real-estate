@@ -5,34 +5,38 @@ import { FcMenu } from 'react-icons/fc';
 // import { FiKey } from 'react-icons/fi';
 
 const Navbar = () => {
-    const navbarItems = [
-        {
-            href: '/',
-            icon: 'FcHome',
-            name: 'Home'
-        }
-    ]
+    // const navbarItems = [
+    //     {
+    //         href: '/',
+    //         icon: 'FcHome',
+    //         name: 'Home'
+    //     }
+    // ]
 
     const navbarItems1 = [
         {
             href: '/',
             icon: '{<FcHome />}',
-            name: 'Home'
+            name: 'Home',
+            id: 1
         },
         {
             href: '/search',
             icon: '{<BsSearch />}',
-            name: 'Search'
+            name: 'Search',
+            id: 2
         },
         {
             href: '/search?purpose=for-sale',
             icon: '{<FcAbout />}',
-            name: 'Buy Property'
+            name: 'Buy Property',
+            id: 3
         },
         {
             href: '/search?purpose=for-rent',
             icon: '{<FiKey />}',
-            name: 'Rent Property'
+            name: 'Rent Property',
+            id: 4
         },
     ]
 
@@ -43,7 +47,7 @@ const Navbar = () => {
             </Box>
             <Flex alignItems='center' gap={6} display={{ base: "none", md: "flex" }}>
                 {navbarItems1.map((item) => (
-                    <Link href={item.href} passHref>
+                    <Link href={item.href} key={item.id} passHref>
                         <LinkChakra fontWeight='bold'>
                             {item.name}
                         </LinkChakra>
@@ -56,7 +60,7 @@ const Navbar = () => {
                         <MenuButton as={IconButton} icon={<FcMenu />} variant='outlined' color='red.400' />
                         <MenuList>
                             {navbarItems1.map((item) => (
-                                <Link href={item.href} passHref>
+                                <Link href={item.href} key={item.id} passHref>
                                     <MenuItem fontWeight='bold'>{item.name}</MenuItem>
                                 </Link>
                             ))}

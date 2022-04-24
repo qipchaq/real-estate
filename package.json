@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.8.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@netlify/plugin-nextjs": "^4.4.2",
     "axios": "^0.26.1",
     "framer-motion": "^6.3.0",
     "millify": "^4.0.0",

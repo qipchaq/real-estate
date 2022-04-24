@@ -1,35 +1,71 @@
 import Link from 'next/link';
-import { Menu, MenuButton, MenuList, MenuItem, IconButton, Flex, Box, Spacer } from '@chakra-ui/react';
-import { FcMenu, FcHome, FcAbout } from 'react-icons/fc';
-import { BsSearch } from 'react-icons/bs';
-import { FiKey } from 'react-icons/fi';
+import { Menu, MenuButton, MenuList, MenuItem, IconButton, Flex, Box, Link as LinkChakra } from '@chakra-ui/react';
+import { FcMenu } from 'react-icons/fc';
+// import { BsSearch } from 'react-icons/bs';
+// import { FiKey } from 'react-icons/fi';
 
-const Navbar = () => (
-    <Flex p='2' borderBottom='1px' borderColor='gray.100'>
-        <Box fontSize='3xl' color='blue.400' fontweight='bold'>
-            <Link href='/' paddingLeft='2'>Realtor</Link>
-        </Box>
-        <Spacer />
-        <Box>
-            <Menu>
-                <MenuButton as={IconButton} icon={<FcMenu />} variant='outlined' color='red.400' />
-                <MenuList>
-                    <Link href='/' passHref>
-                        <MenuItem icon={<FcHome />}>Home</MenuItem>
+const Navbar = () => {
+    const navbarItems = [
+        {
+            href: '/',
+            icon: 'FcHome',
+            name: 'Home'
+        }
+    ]
+
+    const navbarItems1 = [
+        {
+            href: '/',
+            icon: '{<FcHome />}',
+            name: 'Home'
+        },
+        {
+            href: '/search',
+            icon: '{<BsSearch />}',
+            name: 'Search'
+        },
+        {
+            href: '/search?purpose=for-sale',
+            icon: '{<FcAbout />}',
+            name: 'Buy Property'
+        },
+        {
+            href: '/search?purpose=for-rent',
+            icon: '{<FiKey />}',
+            name: 'Rent Property'
+        },
+    ]
+
+    return (
+        <Flex p='2' mr='2' ml='2' borderBottom='1px' borderColor='gray.100' justifyContent='space-between'>
+            <Box fontSize='3xl' color='blue.400' fontweight='bold'>
+                <Link href='/' paddingLeft='2'>Realtor</Link>
+            </Box>
+            <Flex alignItems='center' gap={6} display={{ base: "none", md: "flex" }}>
+                {navbarItems1.map((item) => (
+                    <Link href={item.href} passHref>
+                        <LinkChakra fontWeight='bold'>
+                            {item.name}
+                        </LinkChakra>
                     </Link>
-                    <Link href='/search'>
-                        <MenuItem icon={<BsSearch />}>Search</MenuItem>
-                    </Link>
-                    <Link href='/search?purpose=for-sale' passHref>
-                        <MenuItem icon={<FcAbout />}>Buy Property</MenuItem>
-                    </Link>
-                    <Link href='/search?purpose=for-rent' passHref>
-                        <MenuItem icon={<FiKey />}>Rent Property</MenuItem>
-                    </Link>
-                </MenuList>
-            </Menu>
-        </Box>
-    </Flex>
-)
+                ))}
+            </Flex>
+            <Box display={{ base: "block", md: "none" }}>
+                <Flex w="100%" align="center" justify="space-between">
+                    <Menu>
+                        <MenuButton as={IconButton} icon={<FcMenu />} variant='outlined' color='red.400' />
+                        <MenuList>
+                            {navbarItems1.map((item) => (
+                                <Link href={item.href} passHref>
+                                    <MenuItem fontWeight='bold'>{item.name}</MenuItem>
+                                </Link>
+                            ))}
+                        </MenuList>
+                    </Menu>
+                </Flex>
+            </Box>
+        </Flex>
+    )
+}
 
 export default Navbar
